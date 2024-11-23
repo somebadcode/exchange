@@ -61,7 +61,7 @@ func run() StatusCode {
 		return StatusError
 	}
 
-	fmt.Printf("%s %s is %s %s\n", qty.FloatString(2), currency, result.FloatString(2), conv.BaseCurrency)
+	fmt.Printf("%s %s is %s %s\n", qty.FloatString(2), conv.BaseCurrency, result.FloatString(2), currency)
 
 	return StatusOK
 }

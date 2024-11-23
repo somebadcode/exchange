@@ -201,7 +201,7 @@ func (c *Converter) ConvertTo(ctx context.Context, currency string, qty *big.Rat
 
 	result := &big.Rat{}
 
-	result.Quo(rate, qty)
+	result.Mul(rate, qty)
 
 	return result, nil
 }
