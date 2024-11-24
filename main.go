@@ -55,6 +55,12 @@ func run() StatusCode {
 		return StatusArgumentError
 	}
 
+	if conv.AppID == "" {
+		slog.Error("app id is required (environment variable `EXCHANGE_APP_ID`)")
+
+		return StatusArgumentError
+	}
+
 	result, err := conv.ConvertTo(ctx, currency, qty)
 	if err != nil {
 		slog.Error("conversion failed",
