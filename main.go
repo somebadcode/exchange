@@ -17,6 +17,7 @@ type StatusCode = int
 const (
 	StatusOK StatusCode = iota
 	StatusError
+	StatusArgumentError
 )
 
 func main() {
@@ -45,8 +46,14 @@ func run() StatusCode {
 	})
 
 	flag.StringVar(&conv.BaseCurrency, "base", "usd", "base currency")
-	flag.StringVar(&currency, "currency", "usd", "currency to convert to")
+	flag.StringVar(&currency, "currency", "eur", "currency to convert to")
 	flag.Parse()
+
+	if qty == nil {
+		slog.Error("quantity is required (-qty)")
+
+		return StatusArgumentError
+	}
 
 	result, err := conv.ConvertTo(ctx, currency, qty)
 	if err != nil {
